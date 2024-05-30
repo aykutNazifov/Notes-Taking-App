@@ -1,14 +1,15 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from "./Header"
 
 const Layout = () => {
     return (
-        <div>
+        <div className='min-h-screen flex flex-col'>
             <header>
                 <Header />
             </header>
-            <Outlet />
+            <div className='flex-1'>
+                <Outlet />
+            </div>
         </div>
     )
 }
