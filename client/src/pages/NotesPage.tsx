@@ -28,7 +28,8 @@ const NotesPage = () => {
                 <button onClick={() => setIsAddModalOpen(true)} className='flex mx-auto mb-4 p-2 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 '>Add Note</button>
                 <NoteFormModal open={isAddModalOpen} handleClose={() => setIsAddModalOpen(false)} />
                 <NotesTable notes={notes} />
-                <div className='flex justify-center mt-6'>
+                <div className='flex justify-between items-center mt-6'>
+                    <p>10 notes</p>
                     <Pagination count={Math.ceil(data.length / NOTES_PER_PAGE)} page={page} onChange={handlePageChange} />
                 </div>
             </div>

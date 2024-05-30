@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
 import NotesPage from "./pages/NotesPage";
@@ -8,6 +8,8 @@ import Layout from "./components/Layout";
 
 function App() {
 
+  const user = false
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -15,19 +17,19 @@ function App() {
       children: [
         {
           path: "/",
-          element: <LandingPage />,
+          element: user ? <Navigate to={"/notes"} /> : <LandingPage />,
         },
         {
           path: "/notes",
-          element: <NotesPage />,
+          element: user ? <NotesPage /> : <Navigate to={"/"} />,
         },
         {
           path: "/login",
-          element: <LoginPage />,
+          element: user ? <Navigate to={"/notes"} /> : <LoginPage />,
         },
         {
           path: "/register",
-          element: <RegisterPage />,
+          element: user ? <Navigate to={"/notes"} /> : <RegisterPage />,
         },
       ]
     }

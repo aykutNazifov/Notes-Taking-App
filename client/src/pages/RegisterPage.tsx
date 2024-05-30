@@ -39,12 +39,12 @@ const RegisterPage = () => {
 
     return (
         <div className="h-[calc(100vh-3.6rem)]">
-            <div className='container mx-auto flex justify-center items-center px-20 h-full'>
+            <div className='container mx-auto flex justify-center items-center px-2 lg:px-20 h-full'>
                 <div className='w-full flex border border-solid border-gray-300 rounded-lg overflow-hidden'>
-                    <div className='flex-1 p-10 flex flex-col items-center'>
+                    <div className='flex-1 p-4 lg:p-10 flex flex-col items-center'>
                         <h1 className='text-3xl font-medium text-center mb-4'>Register</h1>
                         <p className='text-center mb-4'>Create an account to start managing your notes.</p>
-                        <form onSubmit={handleSubmit(onSubmit)} className='w-2/3 flex flex-col gap-4'>
+                        <form onSubmit={handleSubmit(onSubmit)} className='lg:w-2/3 flex flex-col gap-4'>
                             <TextField error={errors.name?.message ? true : false} helperText={errors.name?.message} className='w-full mb-4' id="name" label="Name" variant="outlined" {...register("name")} />
                             <TextField error={errors.email?.message ? true : false} helperText={errors.email?.message} className='w-full mb-4' id="email" label="Email" variant="outlined" {...register("email")} />
                             <TextField error={errors.password?.message ? true : false} helperText={errors.password?.message} className='w-full' id="password" label="Password" type="password" variant="outlined" {...register("password")} />
@@ -53,7 +53,7 @@ const RegisterPage = () => {
                             <Link className='mt-6 flex justify-end text-sm hover:underline duration-300 transition-all' to={"/login"}>Already have account? Login</Link>
                         </form>
                     </div>
-                    <div className='flex-1'>
+                    <div className='hidden md:block flex-1'>
                         <img src={noteImage} className='w-full h-full object-cover' />
                     </div>
                 </div>
