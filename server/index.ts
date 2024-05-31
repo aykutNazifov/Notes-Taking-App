@@ -11,11 +11,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }))
 
-
-app.get("/", (req, res) => {
-    res.json({ test: "Test" })
-})
-
 app.use("/api/auth", authRouter)
 app.use("/api/note", noteRouter)
 
@@ -25,7 +20,6 @@ app.all("*", (req: Request, res: Response) => {
         message: `Route ${req.originalUrl} not found!`
     })
 })
-
 
 const port = process.env.PORT || 3001
 app.listen(port, () => {

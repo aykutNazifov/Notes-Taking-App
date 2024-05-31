@@ -1,8 +1,14 @@
 import { Router } from "express";
-import { login } from "../controllers/auth.controller";
+import { getUserInfo, login, logout, register, updateToken } from "../controllers/auth.controller";
+import { isAuthenticated } from "../middleware/isAuthenticated";
 
 const router = Router()
 
-router.get("/login", login)
+router.post("/register", register)
+router.post("/login", login)
+router.get("/update-token", updateToken)
+router.get("/logout", logout)
+
+router.get("/user", isAuthenticated, getUserInfo)
 
 export default router
