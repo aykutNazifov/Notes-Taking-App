@@ -27,7 +27,7 @@ export const register = async (req: Request, res: Response) => {
         })
 
         if (existingUser) {
-            return res.status(409).json({ success: false, messgae: "User with this email already exists." })
+            return res.status(409).json({ success: false, message: "User with this email already exists." })
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
@@ -83,7 +83,7 @@ export const login = async (req: Request, res: Response) => {
         res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000 });
         res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
 
-        res.status(200).json({ success: true, message: "Login successful." })
+        res.status(200).json({ success: true, message: "Login successful.", user: { id: user.id, name: user.name, email: user.email } })
     } catch (error) {
         res.status(500).json({ success: false, message: error })
     }

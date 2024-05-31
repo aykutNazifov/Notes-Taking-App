@@ -2,8 +2,12 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { TextField } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import noteImage from "../assets/notes2.avif"
+import apiClient from "../utils/apiClient"
+import { useState } from "react"
+import { toast } from "react-toastify"
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const schema = yup.object({
     name: yup
@@ -26,6 +30,9 @@ const schema = yup.object({
 });
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState("")
+    const [loading, setLoading] = useState(false)
     const {
         register,
         handleSubmit,
@@ -34,8 +41,23 @@ const RegisterPage = () => {
         resolver: yupResolver(schema),
     })
 
-    const onSubmit = (data: any) => console.log(data)
-
+    const onSubmit = async (data: any) => {
+        try {
+            setLoading(true)
+            const res = await apiClient.post("/auth/register", { ...data })
+            if (res.data.success) {
+                toast.success('User registered successfully! Redirecting to login...', { autoClose: 2000 });
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+            }
+        } catch (error: any) {
+            setLoading(false)
+            if (error.response.data.message) {
+                setErrorMessage(error.response.data.message)
+            }
+        }
+    }
 
     return (
         <div className="h-[calc(100vh-3.6rem)]">
@@ -49,7 +71,8 @@ const RegisterPage = () => {
                             <TextField error={errors.email?.message ? true : false} helperText={errors.email?.message} className='w-full mb-4' id="email" label="Email" variant="outlined" {...register("email")} />
                             <TextField error={errors.password?.message ? true : false} helperText={errors.password?.message} className='w-full' id="password" label="Password" type="password" variant="outlined" {...register("password")} />
                             <TextField error={errors.confirmPassword?.message ? true : false} helperText={errors.confirmPassword?.message} className='w-full' id="confirmPassword" label="Confirm Password" type="password" variant="outlined" {...register("confirmPassword")} />
-                            <button className='flex mx-auto py-2 px-6 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 '>Register</button>
+                            <p className="text-red-400 text-right">{errorMessage}</p>
+                            <button className='flex mx-auto py-2 px-6 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 disabled:cursor-not-allowed' disabled={loading}>{loading ? <AutorenewIcon className="animate-spin" /> : "Register"}</button>
                             <Link className='mt-6 flex justify-end text-sm hover:underline duration-300 transition-all' to={"/login"}>Already have account? Login</Link>
                         </form>
                     </div>
