@@ -80,8 +80,18 @@ export const login = async (req: Request, res: Response) => {
         const accessToken = generateAccessToken({ id: user.id, email: user.email })
         const refreshToken = generateRefreshToken({ id: user.id, email: user.email })
 
-        res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000 });
-        res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 15 * 60 * 1000
+        });
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
 
         res.status(200).json({ success: true, message: "Login successful.", user: { id: user.id, name: user.name, email: user.email } })
     } catch (error) {
@@ -100,7 +110,12 @@ export const updateToken = (req: Request, res: Response) => {
     try {
         const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!) as { userId: string; email: string };
         const accessToken = generateAccessToken({ id: decoded.userId, email: decoded.email });
-        res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000 });
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 15 * 60 * 1000
+        });
         res.status(200).json({ success: true, message: 'Access token refreshed' });
     } catch (error) {
         res.status(403).json({ success: true, error: 'Invalid refresh token' });
