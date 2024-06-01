@@ -124,8 +124,8 @@ export const updateToken = (req: Request, res: Response) => {
 
 
 export const logout = (req: Request, res: Response) => {
-    res.clearCookie('accessToken');
-    res.clearCookie('refreshToken');
+    res.cookie('accessToken', "", { maxAge: 1 });
+    res.cookie('refreshToken', "", { maxAge: 1 });
     res.status(200).json({ success: true, message: 'Logged out successfully' });
 }
 
