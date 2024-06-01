@@ -12,7 +12,7 @@ const NotesPage = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [page, setPage] = useState(1)
 
-    const handlePageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    const handlePageChange = (_e: React.ChangeEvent<unknown>, value: number) => {
         setPage(value)
     }
 
@@ -21,7 +21,7 @@ const NotesPage = () => {
         return { notes: res.data.notes, totalNotes: res.data.totalNotes }
     }
 
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, data } = useQuery({
         queryKey: ['notes', page],
         queryFn: fetchNotes
     })

@@ -15,8 +15,7 @@ apiClient.interceptors.response.use(
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                const response = await apiClient.get('/auth/update-token');
-                // originalRequest.headers.Cookie = `accessToken=${response.data.accessToken}`;
+                await apiClient.get('/auth/update-token');
                 return apiClient(originalRequest);
             } catch (refreshError) {
                 console.error('Refresh token failed', refreshError);
