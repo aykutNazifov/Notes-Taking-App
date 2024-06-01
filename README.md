@@ -40,7 +40,9 @@ To get started with the Notes App, you need to set up both the backend and the f
     DATABASE_URL=
     ACCESS_TOKEN_SECRET=
     REFRESH_TOKEN_SECRET=
+    FRONTEND_URL=
     ```
+
 
 ### Frontend Setup
 
@@ -56,7 +58,13 @@ To get started with the Notes App, you need to set up both the backend and the f
     npm install
     ```
 
-    ## Environment Variables
+3. Create a `.env` file in the `frontend` directory and add the following environment variables:
+
+    ```env
+    VITE_BACKEND_URL=
+    ```
+
+## Environment Variables
 
 ### Backend
 
@@ -66,6 +74,13 @@ The backend requires the following environment variables:
 - `DATABASE_URL`: The URL of your database (e.g., a PostgreSQL connection string).
 - `ACCESS_TOKEN_SECRET`: The secret key for signing access tokens.
 - `REFRESH_TOKEN_SECRET`: The secret key for signing refresh tokens.
+- `FRONTEND_URL`: The URL of your frontend application.
+
+### Frontend
+
+The frontend requires the following environment variables:
+
+- `VITE_BACKEND_URL`: The URL of your backend server.
 
 ## Running the Application
 
