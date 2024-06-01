@@ -94,7 +94,7 @@ export const updateToken = (req: Request, res: Response) => {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
-        return res.status(401).json({ error: 'Refresh token is required' });
+        return res.status(403).json({ error: 'Refresh token is required' });
     }
 
     try {
