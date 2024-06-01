@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { toast } from "react-toastify"
 import { TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
-import noteImage from "../assets/notes1.avif"
 import { useState } from "react"
 import apiClient from "../utils/apiClient"
-import { toast } from "react-toastify"
 import { useAuth } from "../hooks/useAuth"
+
+//image
+import noteImage from "../assets/notes1.avif"
+
+//icons
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const schema = yup

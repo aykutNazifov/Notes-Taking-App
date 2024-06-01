@@ -1,6 +1,7 @@
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { ToastContainer } from 'react-toastify';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import LandingPage from "./pages/LandingPage";
 import NotesPage from "./pages/NotesPage";
@@ -11,6 +12,8 @@ import { useAuth } from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import apiClient from "./utils/apiClient";
 import Loading from "./components/Loading";
+
+const queryClient = new QueryClient()
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -59,12 +62,13 @@ function App() {
   ]);
 
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       {loading ? <div className="w-screen h-screen"><Loading /></div> : (
         <RouterProvider router={router} />
       )}
       <ToastContainer position="bottom-right" />
-    </div>
+    </QueryClientProvider>
+
   )
 }
 

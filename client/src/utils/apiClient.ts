@@ -14,7 +14,7 @@ apiClient.interceptors.response.use(
         if (error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
-                const response = await apiClient.post('/auth/update-token');
+                const response = await apiClient.get('/auth/update-token');
                 // originalRequest.headers.Cookie = `accessToken=${response.data.accessToken}`;
                 return apiClient(originalRequest);
             } catch (refreshError) {

@@ -1,7 +1,9 @@
-import { Box, Modal } from '@mui/material'
 import React from 'react'
+import { Box, Modal } from '@mui/material'
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { boxStyle } from '../../mui-styles'
 import { INote } from '../../types/types';
+import apiClient from '../../utils/apiClient';
 
 interface IDeleteNoteModal {
     note: INote | null;
@@ -9,8 +11,24 @@ interface IDeleteNoteModal {
 }
 
 const DeleteNoteModal: React.FC<IDeleteNoteModal> = ({ note, handleClose }) => {
+    const queryClient = useQueryClient()
 
-    const handleDelete = () => { }
+    const deleteNote = async (noteId: string) => {
+        await apiClient.delete(`/note/${noteId}`)
+        handleClose()
+    }
+
+    const deleteMutation = useMutation({
+        mutationFn: deleteNote,
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ['notes'] })
+        },
+    });
+
+    const handleDelete = () => {
+        deleteMutation.mutate(note?.id!);
+    }
+
     return (
         <Modal
             open={note ? true : false}

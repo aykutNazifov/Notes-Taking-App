@@ -8,5 +8,5 @@ export const boxStyle = {
     border: '1px solid #000',
     boxShadow: 24,
     borderRadius: 4,
-    p: 4,
+    p: 4
 };

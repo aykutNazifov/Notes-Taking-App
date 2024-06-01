@@ -1,6 +1,8 @@
+import Logo from './Logo'
 import { useAuth } from '../hooks/useAuth';
 import apiClient from '../utils/apiClient';
-import Logo from './Logo'
+
+//icons
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header = () => {

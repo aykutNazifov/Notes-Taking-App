@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { IconButton, Tooltip } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,13 +9,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import dayjs from 'dayjs';
 import { INote } from '../types/types';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { IconButton, Modal, Tooltip } from '@mui/material';
 import ShowNoteModal from './modals/ShowNoteModal';
 import NoteFormModal from './modals/NoteFormModal';
 import DeleteNoteModal from './modals/DeleteNoteModal';
+
+//icons
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface INotesTableProps {
     notes: INote[]
@@ -63,7 +65,11 @@ const NotesTable: React.FC<INotesTableProps> = ({ notes }) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.id}
+                                    <Tooltip title={row.id}>
+                                        <span>
+                                            {row.id.slice(0, 3)}...
+                                        </span>
+                                    </Tooltip>
                                 </TableCell>
                                 <TableCell>{row.title}</TableCell>
                                 <TableCell>{dayjs(row.created_at).format('DD MMM YYYY')}</TableCell>

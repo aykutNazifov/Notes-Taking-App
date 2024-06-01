@@ -1,5 +1,5 @@
-import { Box, Modal } from '@mui/material'
 import React from 'react'
+import { Box, Modal } from '@mui/material'
 import { INote } from '../../types/types';
 import { boxStyle } from '../../mui-styles';
 

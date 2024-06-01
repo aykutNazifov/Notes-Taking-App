@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+
+//image
 import noteImage from "../assets/notes3.avif"
 
 const LandingPage = () => {
