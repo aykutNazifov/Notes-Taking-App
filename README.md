@@ -18,13 +18,13 @@ To get started with the Notes App, you need to set up both the backend and the f
 
     ```bash
     git clone https://github.com/aykutNazifov/Notes-Taking-App.git
-    cd notes-app
+    cd notes-taking-app
     ```
 
-2. Navigate to the `backend` directory:
+2. Navigate to the `server` directory:
 
     ```bash
-    cd backend
+    cd server
     ```
 
 3. Install the dependencies:
@@ -33,7 +33,7 @@ To get started with the Notes App, you need to set up both the backend and the f
     npm install
     ```
 
-4. Create a `.env` file in the `backend` directory and add the following environment variables:
+4. Create a `.env` file in the `server` directory and add the following environment variables:
 
     ```env
     PORT=
@@ -44,10 +44,10 @@ To get started with the Notes App, you need to set up both the backend and the f
 
 ### Frontend Setup
 
-1. Navigate to the `frontend` directory:
+1. Navigate to the `client` directory:
 
     ```bash
-    cd ../frontend
+    cd ../client
     ```
 
 2. Install the dependencies:
