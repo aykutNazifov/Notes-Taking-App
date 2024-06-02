@@ -12,7 +12,7 @@ apiClient.interceptors.response.use(
     },
     async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
+        if (error.response.status === 401 && error.response.data.updateToken && !originalRequest._retry) {
             originalRequest._retry = true;
             try {
                 await apiClient.get('/auth/update-token');

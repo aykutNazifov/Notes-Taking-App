@@ -9,7 +9,7 @@ export const isAuthenticated = (req: AuthenticatedRequest, res: Response, next: 
     const token = req.cookies.accessToken;
 
     if (!token) {
-        return res.status(401).json({ success: false, error: 'Access token is required' });
+        return res.status(401).json({ success: false, error: 'Access token is required', updateToken: true });
     }
 
     try {

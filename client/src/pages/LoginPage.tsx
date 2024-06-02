@@ -23,7 +23,6 @@ const schema = yup
 
 const LoginPage = () => {
     const { setUser } = useAuth()
-    const [errorMessage, setErrorMessage] = useState("")
     const [loading, setLoading] = useState(false)
     const {
         register,
@@ -44,7 +43,7 @@ const LoginPage = () => {
         } catch (error: any) {
             setLoading(false)
             if (error.response.data.message) {
-                setErrorMessage(error.response.data.message)
+                toast.error(error.response.data.message);
             }
         }
     }
@@ -60,7 +59,6 @@ const LoginPage = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className='lg:w-2/3 flex flex-col gap-4'>
                             <TextField error={errors.email?.message ? true : false} helperText={errors.email?.message} className='w-full mb-4' id="email" label="Email" variant="outlined" {...register("email")} />
                             <TextField error={errors.password?.message ? true : false} helperText={errors.password?.message} className='w-full' id="password" type="password" label="Password" variant="outlined" {...register("password")} />
-                            <p className="text-red-400 text-right">{errorMessage}</p>
                             <button className='flex mx-auto py-2 px-6 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 disabled:cursor-not-allowed' disabled={loading}>{loading ? <AutorenewIcon className="animate-spin" /> : "Login"}</button>
                             <Link className='mt-6 flex justify-end text-sm hover:underline duration-300 transition-all' to={"/register"}>Don't have an account? Register</Link>
                         </form>

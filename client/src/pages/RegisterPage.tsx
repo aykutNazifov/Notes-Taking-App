@@ -35,7 +35,6 @@ const schema = yup.object({
 
 const RegisterPage = () => {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState("")
     const [loading, setLoading] = useState(false)
     const {
         register,
@@ -58,7 +57,7 @@ const RegisterPage = () => {
         } catch (error: any) {
             setLoading(false)
             if (error.response.data.message) {
-                setErrorMessage(error.response.data.message)
+                toast.error(error.response.data.message);
             }
         }
     }
@@ -75,7 +74,6 @@ const RegisterPage = () => {
                             <TextField error={errors.email?.message ? true : false} helperText={errors.email?.message} className='w-full mb-4' id="email" label="Email" variant="outlined" {...register("email")} />
                             <TextField error={errors.password?.message ? true : false} helperText={errors.password?.message} className='w-full' id="password" label="Password" type="password" variant="outlined" {...register("password")} />
                             <TextField error={errors.confirmPassword?.message ? true : false} helperText={errors.confirmPassword?.message} className='w-full' id="confirmPassword" label="Confirm Password" type="password" variant="outlined" {...register("confirmPassword")} />
-                            <p className="text-red-400 text-right">{errorMessage}</p>
                             <button className='flex mx-auto py-2 px-6 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 disabled:cursor-not-allowed' disabled={loading}>{loading ? <AutorenewIcon className="animate-spin" /> : "Register"}</button>
                             <Link className='mt-6 flex justify-end text-sm hover:underline duration-300 transition-all' to={"/login"}>Already have account? Login</Link>
                         </form>
