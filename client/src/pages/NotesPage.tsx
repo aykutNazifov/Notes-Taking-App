@@ -29,7 +29,7 @@ const NotesPage = () => {
 
     return (
         <div>
-            <div className='container mx-auto px-2 py-5'>
+            <div className='container mx-auto px-2 md:px-10 lg:px-16 py-5'>
                 <h1 className='text-2xl font-medium text-center mb-4'>Notes Taking App</h1>
                 <p className='mb-4 text-center'>Welcome to your personal notes app. Here you can keep track of your notes easily.</p>
                 <button onClick={() => setIsAddModalOpen(true)} className='flex mx-auto mb-4 p-2 border border-solid border-gray-500 rounded-lg hover:bg-gray-500 hover:text-white font-medium transition-all duration-300 '>Add Note</button>

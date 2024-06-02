@@ -151,7 +151,6 @@ export const getUserInfo = async (req: AuthenticatedRequest, res: Response) => {
 
         res.status(200).json({ sucess: true, user: { id: user.id, name: user.name, email: user.email } });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Internal server error' });
     }
 }

@@ -65,7 +65,7 @@ const RegisterPage = () => {
 
     return (
         <div className="h-[calc(100vh-3.6rem)]">
-            <div className='container mx-auto flex justify-center items-center px-2 lg:px-20 h-full'>
+            <div className='container mx-auto flex justify-center items-center px-2 md:px-10 lg:px-16 h-full'>
                 <div className='w-full flex border border-solid border-gray-300 rounded-lg overflow-hidden'>
                     <div className='flex-1 p-4 lg:p-10 flex flex-col items-center'>
                         <h1 className='text-3xl font-medium text-center mb-4'>Register</h1>

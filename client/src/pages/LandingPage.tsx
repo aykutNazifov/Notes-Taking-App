@@ -6,7 +6,7 @@ import noteImage from "../assets/notes3.avif"
 const LandingPage = () => {
     return (
         <div>
-            <div className='container mx-auto px-2'>
+            <div className='container mx-auto px-2 md:px-10 lg:px-16'>
                 <div className="flex flex-col items-center justify-center min-h-screen py-5">
                     <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome to the Notes App</h1>
                     <p className="text-lg text-gray-600 mb-2">Store and organize your notes seamlessly with our app.</p>

@@ -10,6 +10,7 @@ import apiClient from '../../utils/apiClient'
 
 //icons
 import AutorenewIcon from '@mui/icons-material/Autorenew';
+import { toast } from 'react-toastify'
 
 interface INoteFormModal {
     open: boolean;
@@ -67,7 +68,11 @@ const NoteFormModal: React.FC<INoteFormModal> = ({ open, handleClose, note, edit
     const mutation = useMutation({
         mutationFn: edit ? updateNote : createNote,
         onSuccess: () => {
+            toast.success(edit ? "Note updated successfully!" : "Note created successfully!")
             queryClient.invalidateQueries({ queryKey: ['notes'] })
+        },
+        onError: () => {
+            toast.error("Something went wrong! Please try again.")
         }
     })
 

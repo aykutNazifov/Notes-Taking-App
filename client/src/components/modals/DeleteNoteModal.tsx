@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { boxStyle } from '../../mui-styles'
 import { INote } from '../../types/types';
 import apiClient from '../../utils/apiClient';
+import { toast } from 'react-toastify';
 
 interface IDeleteNoteModal {
     note: INote | null;
@@ -21,8 +22,12 @@ const DeleteNoteModal: React.FC<IDeleteNoteModal> = ({ note, handleClose }) => {
     const deleteMutation = useMutation({
         mutationFn: deleteNote,
         onSuccess: async () => {
+            toast.success("Note deleted successfully!")
             await queryClient.invalidateQueries({ queryKey: ['notes'] })
         },
+        onError: () => {
+            toast.error("Something went wrong! Please try again.")
+        }
     });
 
     const handleDelete = () => {
