@@ -7,9 +7,14 @@ import noteRouter from "./routes/note.route"
 
 const app = express()
 
+const corsOptions = {
+    origin: ["https://notes-taking-app-pwhu.onrender.com"],
+    credentials: true,
+};
+
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ origin: [process.env.FRONTEND_URL!], credentials: true }))
+app.use(cors(corsOptions))
 
 app.use("/api/auth", authRouter)
 app.use("/api/note", noteRouter)
